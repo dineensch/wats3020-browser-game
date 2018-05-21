@@ -91,7 +91,6 @@ class TicTacToe {
 
         let tileX = event.target.dataset.x;
         let tileY = event.target.dataset.y
-        /* here you can put a conditional to return 'false' if this tile is already taken' So, this value would be 'null' until we set it to a value. so if it is not 'null' it has alrady been placed */
         this.gameState[tileX][tileY] = this.currentPlayer.token;
         
          
@@ -126,6 +125,15 @@ class TicTacToe {
     showDrawScreen(){
         // Displays end game screen for a Draw
         this.drawScreen.setAttribute('class', 'show');
+    }
+
+    hideWinScreen(){
+        // Removes end game screen after a Win.
+        this.winScreen.removeAttribute('class', 'show');
+    }
+    hideDrawScreen(){
+        // Removes end game scrreen after a draw.
+        this.drawScreen.removeAttribute('class', 'show');
     }
 
     //Clear content from gameboard
@@ -177,6 +185,7 @@ class TicTacToe {
         this.initializeMovePrompt();
 
     }
+
 } // End of the Tic Tac Toe Class definition.
 
 
@@ -189,8 +198,18 @@ document.addEventListener('DOMContentLoaded', function(event){
     startButton.addEventListener('click', function(event) {
         game = new TicTacToe();
         game.start();       
-    }); // NOTE: End of the `startButton` event listener here.  
-    
+    }); // NOTE: End of the `startButton` event listener.  
+
+// Play Again Button
+    let rematchButton = document.querySelector('#rematch-button');
+    rematchButton.addEventListener('click', function(event) {
+        game = new TicTacToe();
+        game.start();
+        game.hideWinScreen();
+        console.log('Hiding Win Screen');
+        game.hideDrawScreen();
+        console.log('Hiding Draw Screen');
+    }) // NOTE: End of the `rematchButton` event listener.
 }); // NOTE: End DOMContentLoaded Event Listener
 
 
