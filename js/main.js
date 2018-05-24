@@ -87,7 +87,6 @@ class TicTacToe {
     recordMove(event){
         console.log('Recording move.');
         // This method handles recording a move in the `this.gameState` property.
-        // To record a move, we must accmoplish the following:
 
         let tileX = event.target.dataset.x;
         let tileY = event.target.dataset.y
@@ -201,15 +200,17 @@ document.addEventListener('DOMContentLoaded', function(event){
     }); // NOTE: End of the `startButton` event listener.  
 
 // Play Again Button
-    let rematchButton = document.querySelector('#rematch-button');
-    rematchButton.addEventListener('click', function(event) {
-        game = new TicTacToe();
-        game.start();
-        game.hideWinScreen();
-        console.log('Hiding Win Screen');
-        game.hideDrawScreen();
-        console.log('Hiding Draw Screen');
-    }) // NOTE: End of the `rematchButton` event listener.
+    let rematchButton = document.querySelectorAll(".rematch-button");
+    for (let button of rematchButton) {
+        button.addEventListener('click', function(event) {
+            game = new TicTacToe();
+            game.start();
+            game.hideWinScreen();
+            console.log('Hiding Win Screen');
+            game.hideDrawScreen();
+            console.log('Hiding Draw Screen');
+        });
+    }// NOTE: End of the `rematchButton` for loop.
 }); // NOTE: End DOMContentLoaded Event Listener
 
 
